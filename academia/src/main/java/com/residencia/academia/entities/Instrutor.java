@@ -1,5 +1,7 @@
 package com.residencia.academia.entities;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -8,6 +10,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "idInstrutor",scope = Instrutor.class)
@@ -17,20 +21,28 @@ public class Instrutor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_instrutor")
-	private Integer IdInstrutor;
+	private Integer idInstrutor;
 	
 	@Column(name = "rg")
 	private Integer rg;
 	
 	@Column(name = "nome")
 	private String nome;
+	
+	@OneToMany(mappedBy = "instrutor")
+	private List<Turma> turmas;
+	
+	@OneToOne(mappedBy = "instrutor")
+	private Telefone telefone;
 
+	//get e set
+	
 	public Integer getIdInstrutor() {
-		return IdInstrutor;
+		return idInstrutor;
 	}
 
 	public void setIdInstrutor(Integer idInstrutor) {
-		IdInstrutor = idInstrutor;
+		this.idInstrutor = idInstrutor;
 	}
 
 	public Integer getRg() {
@@ -48,5 +60,23 @@ public class Instrutor {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+	public List<Turma> getTurmas() {
+		return turmas;
+	}
+
+	public void setTurmas(List<Turma> turmas) {
+		this.turmas = turmas;
+	}
+
+	public Telefone getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(Telefone telefone) {
+		this.telefone = telefone;
+	}
+
 	
+		
 }

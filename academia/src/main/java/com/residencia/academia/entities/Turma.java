@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "idTurma",scope = Turma.class)
@@ -25,8 +27,20 @@ public class Turma {
 	@Column(name = "dia_semana")
 	private String diaSemana;
 	
-	@Column(name = "id_instrutor")
-	private Integer idInstrutor;
+	@ManyToOne
+	@JoinColumn(name = "codigoinstrutor", referencedColumnName = "codigoinstrutor")
+	private Instrutor instrutor;
+	
+	
+	//get e setters
+	
+	public Instrutor getInstrutor() {
+		return instrutor;
+	}
+
+	public void setInstrutor(Instrutor instrutor) {
+		this.instrutor = instrutor;
+	}
 
 	public Integer getIdTurma() {
 		return idTurma;
@@ -50,16 +64,6 @@ public class Turma {
 
 	public void setDiaSemana(String diaSemana) {
 		this.diaSemana = diaSemana;
-	}
-
-	public Integer getIdInstrutor() {
-		return idInstrutor;
-	}
-
-	public void setIdInstrutor(Integer idInstrutor) {
-		this.idInstrutor = idInstrutor;
-	}
-	
-	
+	}	
 	
 }
