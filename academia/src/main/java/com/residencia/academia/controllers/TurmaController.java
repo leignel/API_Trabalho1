@@ -1,7 +1,6 @@
 package com.residencia.academia.controllers;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,25 +11,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.residencia.academia.entities.Turma;
 import com.residencia.academia.services.TurmaService;
 
+@RestController
+@RequestMapping("/turmas")
 public class TurmaController {
-	
-	@RestController
-	@RequestMapping("/turmas")
-	public class TurmaController {
 		
 		@Autowired
 		TurmaService turmaService;
 		
 		@GetMapping
-		public ResponseEntity<List<Turma>> ListarTurmas() {
+		public ResponseEntity<List<Turma>> listarTurmas() {
 			return new 
-					ResponseEntity<>(turmaService.ListarTurmas(), HttpStatus.OK );
+					ResponseEntity<>(turmaService.listarTurmas(), HttpStatus.OK );
 		}
 		
 		@GetMapping("/{id}")
@@ -43,12 +38,6 @@ public class TurmaController {
 			else 
 				return new
 						ResponseEntity<>(turma, HttpStatus.OK);
-		}
-		
-		@GetMapping("/porid")
-		public ResponseEntity<Turma> buscarTurmaPorId(@RequestParam Integer id) {
-			return new
-					ResponseEntity<>(turmaService.buscarTurmaPorId(id), HttpStatus.OK);
 		}
 		
 		@PostMapping
@@ -72,6 +61,4 @@ public class TurmaController {
 				return new
 						ResponseEntity<>("Não foi possível deletar", HttpStatus.BAD_REQUEST);
 		}
-		
-	}
 }

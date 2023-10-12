@@ -28,7 +28,7 @@ public class Turma {
 	private String diaSemana;
 	
 	@ManyToOne
-	@JoinColumn(name = "codigoinstrutor", referencedColumnName = "codigoinstrutor")
+	@JoinColumn(name = "id_instrutor", referencedColumnName = "id_instrutor")
 	private Instrutor instrutor;
 	
 	

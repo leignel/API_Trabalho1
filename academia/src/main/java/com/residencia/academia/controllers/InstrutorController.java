@@ -12,24 +12,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.residencia.academia.entities.Instrutor;
 import com.residencia.academia.services.InstrutorService;
 
+@RestController
+@RequestMapping("/instrutores")
 public class InstrutorController {
-
-	@RestController
-	@RequestMapping("/instrutores")
-	public class InstrutorController {
 
 		@Autowired
 		InstrutorService instrutorService;
 
 		@GetMapping
-		public ResponseEntity<List<Instrutor>> ListarInstrutors() {
-			return new ResponseEntity<>(instrutorService.ListarInstrutors(), HttpStatus.OK);
+		public ResponseEntity<List<Instrutor>> listarInstrutores() {
+			return new ResponseEntity<>(instrutorService.listarInstrutores(), HttpStatus.OK);
 		}
 
 		@GetMapping("/{id}")
@@ -40,11 +37,6 @@ public class InstrutorController {
 				return new ResponseEntity<>(instrutor, HttpStatus.NOT_FOUND);
 			else
 				return new ResponseEntity<>(instrutor, HttpStatus.OK);
-		}
-
-		@GetMapping("/porid")
-		public ResponseEntity<Instrutor> buscarInstrutorPorId(@RequestParam Integer id) {
-			return new ResponseEntity<>(instrutorService.buscarInstrutorPorId(id), HttpStatus.OK);
 		}
 
 		@PostMapping
@@ -64,6 +56,4 @@ public class InstrutorController {
 			else
 				return new ResponseEntity<>("Não foi possível deletar", HttpStatus.BAD_REQUEST);
 		}
-
-	}
 }

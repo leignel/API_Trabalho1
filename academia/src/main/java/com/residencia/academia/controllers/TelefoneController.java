@@ -1,7 +1,6 @@
 package com.residencia.academia.controllers;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,25 +11,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.residencia.academia.entities.Telefone;
 import com.residencia.academia.services.TelefoneService;
 
+@RestController
+@RequestMapping("/telefones")
 public class TelefoneController {
-	
-	@RestController
-	@RequestMapping("/telefones")
-	public class TelefoneController {
 		
 		@Autowired
 		TelefoneService telefoneService;
 		
 		@GetMapping
-		public ResponseEntity<List<Telefone>> ListarTelefones() {
+		public ResponseEntity<List<Telefone>> listarTelefones() {
 			return new 
-					ResponseEntity<>(telefoneService.ListarTelefones(), HttpStatus.OK );
+					ResponseEntity<>(telefoneService.listarTelefones(), HttpStatus.OK );
 		}
 		
 		@GetMapping("/{id}")
@@ -43,12 +38,6 @@ public class TelefoneController {
 			else 
 				return new
 						ResponseEntity<>(telefone, HttpStatus.OK);
-		}
-		
-		@GetMapping("/porid")
-		public ResponseEntity<Telefone> buscarTelefonePorId(@RequestParam Integer id) {
-			return new
-					ResponseEntity<>(telefoneService.buscarTelefonePorId(id), HttpStatus.OK);
 		}
 		
 		@PostMapping
@@ -73,5 +62,4 @@ public class TelefoneController {
 						ResponseEntity<>("Não foi possível deletar", HttpStatus.BAD_REQUEST);
 		}
 		
-	}
 }
