@@ -12,14 +12,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "numTelelefone",scope = Telefone.class)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "idTelefone",scope = Telefone.class)
 @Entity
 @Table(name = "telefone")
 public class Telefone {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_telefone")
+	@Column(name = "id_telefone", unique = true)
 	private Integer idTelefone;
 	
 	@Column(name = "telefone")

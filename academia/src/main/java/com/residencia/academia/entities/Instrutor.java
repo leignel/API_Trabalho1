@@ -20,7 +20,7 @@ import jakarta.persistence.Table;
 public class Instrutor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_instrutor")
+	@Column(name = "id_instrutor", unique = true)
 	private Integer idInstrutor;
 	
 	@Column(name = "rg")

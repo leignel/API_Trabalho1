@@ -18,7 +18,7 @@ import jakarta.persistence.Table;
 public class Turma {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_turma")
+	@Column(name = "id_turma", unique = true)
 	private Integer idTurma;
 	
 	@Column(name = "nome_disciplina")

@@ -53,4 +53,9 @@ public class InstrutorService {
 		return true;
 	}
 
+	public boolean existeInstrutor(Integer id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
